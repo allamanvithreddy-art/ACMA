@@ -1,3 +1,6 @@
+from conflict.update_detector import detect_update_signals
+
+
 def classify_relationship(old_memory, new_memory):
     """
     Classify the relationship between two memories.
@@ -30,7 +33,33 @@ def classify_relationship(old_memory, new_memory):
             "reason": "The new memory contains the same value as the old memory."
         }
 
-    # Case 4: General memory versus specific event
+    # Case 4: Detect update signals
+    update_info = detect_update_signals(new_memory.value)
+
+    if update_info["explicit_update"]:
+        return {
+            "relationship": "explicit_update",
+            "action_hint": "Resolve",
+            "reason": (
+                "The new memory contains language indicating "
+                "that the previous memory may have changed."
+            ),
+            "signals": update_info
+        }
+
+    # Case 5: Detect temporal signals
+    if update_info["temporal_change"]:
+        return {
+            "relationship": "temporal_change",
+            "action_hint": "Evaluate",
+            "reason": (
+                "The new memory contains temporal language. "
+                "Further evidence is required."
+            ),
+            "signals": update_info
+        }
+
+    # Case 6: General memory versus specific event
     if (
         old_memory.scope == "general"
         and new_memory.scope == "specific_event"
@@ -44,7 +73,7 @@ def classify_relationship(old_memory, new_memory):
             )
         }
 
-    # Case 5: Specific event versus general memory
+    # Case 7: Specific event versus general memory
     if (
         old_memory.scope == "specific_event"
         and new_memory.scope == "general"
@@ -58,7 +87,7 @@ def classify_relationship(old_memory, new_memory):
             )
         }
 
-    # Case 6: Different contexts
+    # Case 8: Different contexts
     if old_memory.context != new_memory.context:
         return {
             "relationship": "different_context",
@@ -69,7 +98,7 @@ def classify_relationship(old_memory, new_memory):
             )
         }
 
-    # Case 7: Both memories are general
+    # Case 9: Both memories are general
     if (
         old_memory.scope == "general"
         and new_memory.scope == "general"
@@ -83,7 +112,7 @@ def classify_relationship(old_memory, new_memory):
             )
         }
 
-    # Case 8: Fallback
+    # Case 10: Fallback
     return {
         "relationship": "ambiguous",
         "action_hint": "Ask",
