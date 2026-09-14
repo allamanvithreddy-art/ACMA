@@ -1,0 +1,1 @@
+print("ACMA project environment is working.")
