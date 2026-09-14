@@ -1,0 +1,46 @@
+[
+  {
+    "memory_id": "mem_001",
+    "subject": "user",
+    "attribute": "food_preference",
+    "value": "vegetarian",
+    "scope": "general",
+    "context": null,
+    "source": "user",
+    "confidence": 0.95,
+    "active": true
+  },
+  {
+    "memory_id": "mem_002",
+    "subject": "user",
+    "attribute": "food_consumption",
+    "value": "ate chicken",
+    "scope": "specific_event",
+    "context": "wedding",
+    "source": "user",
+    "confidence": 0.90,
+    "active": true
+  },
+  {
+    "memory_id": "mem_003",
+    "subject": "user",
+    "attribute": "programming_preference",
+    "value": "Java",
+    "scope": "general",
+    "context": null,
+    "source": "user",
+    "confidence": 0.90,
+    "active": true
+  },
+  {
+    "memory_id": "mem_004",
+    "subject": "user",
+    "attribute": "programming_preference",
+    "value": "Python",
+    "scope": "general",
+    "context": null,
+    "source": "user",
+    "confidence": 0.85,
+    "active": true
+  }
+]
