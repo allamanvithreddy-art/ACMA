@@ -1,0 +1,38 @@
+{
+  "experiment": "ACMA LoCoMo chronological replay",
+  "conversation_id": "locomo_caroline_melanie_01",
+  "dialogue_sessions": 3,
+  "dialogue_turns": 39,
+  "curated_memories": 18,
+  "events_evaluated": 18,
+  "events_with_retrieval": 16,
+  "events_without_retrieval": 2,
+  "retrieved_candidates_total": 67,
+  "candidate_evaluations": 67,
+  "nli_calls": 0,
+  "nli_labels": {},
+  "event_level_actions": {
+    "Store": 2,
+    "Preserve": 16
+  },
+  "candidate_level_actions": {
+    "Preserve": 67
+  },
+  "safety_gate_routes": {
+    "decision": 67
+  },
+  "relationships": {
+    "independent": 61,
+    "specific_event": 6
+  },
+  "limitations": [
+    "This replay evaluates the curated memory subset, not the complete LoCoMo benchmark.",
+    "No ground-truth action accuracy is reported because expected actions are not provided for each replay event.",
+    "Event-level and candidate-level decisions are reported separately."
+  ],
+  "outputs": {
+    "event_results": "C:\\Users\\A MANVITH REDDY\\OneDrive\\Pictures\\Desktop\\ACMA\\outputs\\locomo_evaluation\\locomo_event_results.csv",
+    "candidate_results": "C:\\Users\\A MANVITH REDDY\\OneDrive\\Pictures\\Desktop\\ACMA\\outputs\\locomo_evaluation\\locomo_candidate_results.csv",
+    "summary": "C:\\Users\\A MANVITH REDDY\\OneDrive\\Pictures\\Desktop\\ACMA\\outputs\\locomo_evaluation\\locomo_summary.json"
+  }
+}

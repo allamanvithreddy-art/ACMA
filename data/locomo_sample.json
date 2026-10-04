@@ -1,0 +1,220 @@
+{
+  "conversation_id": "locomo_caroline_melanie_01",
+  "speaker_a": "Caroline",
+  "speaker_b": "Melanie",
+  "sessions": [
+    {
+      "session_id": "session_1",
+      "date_time": "1:56 pm on 8 May, 2023",
+      "dialogues": [
+        {
+          "speaker": "Caroline",
+          "dia_id": "D1:1",
+          "text": "Hey Mel! Good to see you! How have you been?"
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D1:2",
+          "text": "Hey Caroline! Good to see you! I'm swamped with the kids & work. What's up with you? Anything new?"
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D1:3",
+          "text": "I went to a LGBTQ support group yesterday and it was so powerful."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D1:4",
+          "text": "Wow, that's cool, Caroline! What happened that was so awesome? Did you hear any inspiring stories?"
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D1:5",
+          "text": "The transgender stories were so inspiring! I was so happy and thankful for all the support."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D1:6",
+          "text": "Wow, love that painting! So cool you found such a helpful group. What's it done for you?"
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D1:7",
+          "text": "The support group has made me feel accepted and given me courage to embrace myself."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D1:8",
+          "text": "That's really cool. You've got guts. What now?"
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D1:9",
+          "text": "Gonna continue my edu and check out career options, which is pretty exciting!"
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D1:10",
+          "text": "Wow, Caroline! What kinda jobs are you thinkin' of? Anything that stands out?"
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D1:11",
+          "text": "I'm keen on counseling or working in mental health - I'd love to support those with similar issues."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D1:12",
+          "text": "You'd be a great counselor! Your empathy and understanding will really help the people you work with. By the way, take a look at this."
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D1:13",
+          "text": "Thanks, Melanie! That's really sweet. Is this your own painting?"
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D1:14",
+          "text": "Yeah, I painted that lake sunrise last year! It's special to me."
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D1:15",
+          "text": "Wow, Melanie! The colors really blend nicely. Painting looks like a great outlet for expressing yourself."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D1:16",
+          "text": "Thanks, Caroline! Painting's a fun way to express my feelings and get creative. It's a great way to relax after a long day."
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D1:17",
+          "text": "Totally agree, Mel. Relaxing and expressing ourselves is key. Well, I'm off to go do some research."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D1:18",
+          "text": "Yep, Caroline. Taking care of ourselves is vital. I'm off to go swimming with the kids. Talk to you soon!"
+        }
+      ]
+    },
+    {
+      "session_id": "session_2",
+      "date_time": "1:14 pm on 25 May, 2023",
+      "dialogues": [
+        {
+          "speaker": "Melanie",
+          "dia_id": "D2:1",
+          "text": "Hey Caroline, since we last chatted, I've had a lot of things happening to me. I ran a charity race for mental health last Saturday – it was really rewarding. Really made me think about taking care of our minds."
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D2:2",
+          "text": "That charity race sounds great, Mel! Making a difference & raising awareness for mental health is super rewarding - I'm really proud of you for taking part!"
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D2:3",
+          "text": "Thanks, Caroline! The event was really thought-provoking. I'm starting to realize that self-care is really important. It's a journey for me, but when I look after myself, I'm able to better look after my family."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D2:5",
+          "text": "Yeah, it's tough. So I'm carving out some me-time each day - running, reading, or playing my violin - which refreshes me and helps me stay present for my fam!"
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D2:7",
+          "text": "Thanks, Caroline. It's still a work in progress, but I'm doing my best. My kids are so excited about summer break! We're thinking about going camping next month. Any fun plans for the summer?"
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D2:8",
+          "text": "Researching adoption agencies — it's been a dream to have a family and give a loving home to kids who need it."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D2:9",
+          "text": "Wow, Caroline! That's awesome! Taking in kids in need - you're so kind. Your future family is gonna be so lucky to have you!"
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D2:10",
+          "text": "Thanks, Mel! My goal is to give kids a loving home. I'm truly grateful for all the support I've got from friends and mentors. Now the hard work starts to turn my dream into a reality. And here's one of the adoption agencies I'm looking into. It's a lot to take in, but I'm feeling hopeful and optimistic."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D2:11",
+          "text": "Wow, that agency looks great! What made you pick it?"
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D2:12",
+          "text": "I chose them 'cause they help LGBTQ+ folks with adoption. Their inclusivity and support really spoke to me."
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D2:14",
+          "text": "I'm thrilled to make a family for kids who need one. It'll be tough as a single parent, but I'm up for the challenge!"
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D2:16",
+          "text": "Thanks, Melanie! I'll do my best to make sure these kids have a safe and loving home."
+        }
+      ]
+    },
+    {
+      "session_id": "session_3",
+      "date_time": "7:55 pm on 9 June, 2023",
+      "dialogues": [
+        {
+          "speaker": "Caroline",
+          "dia_id": "D3:1",
+          "text": "Hey Melanie! How's it going? I wanted to tell you about my school event last week. It was awesome! I talked about my transgender journey and encouraged students to get involved in the LGBTQ community. It was great to see their reactions. It made me reflect on how far I've come since I started transitioning three years ago."
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D3:3",
+          "text": "Thanks, Mel! I felt super powerful giving my talk. I shared my own journey, the struggles I had and how much I've developed since coming out. It was wonderful to see how the audience related to what I said and how it inspired them to be better allies."
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D3:5",
+          "text": "Sharing our experiences isn't always easy, but I feel it's important to help promote understanding and acceptance. I've been blessed with loads of love and support throughout this journey, and I want to pass it on to others."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D3:10",
+          "text": "I want to be couragous for my family- they motivate me and give me love. What motivates you?"
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D3:11",
+          "text": "My friends, family and mentors are my rocks – they motivate me and give me the strength to push on."
+        },
+        {
+          "speaker": "Caroline",
+          "dia_id": "D3:13",
+          "text": "They've been there through everything, I've known these friends for 4 years, since I moved from my home country. Their love and help have been so important especially after that tough breakup. I'm super thankful."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D3:14",
+          "text": "I'm lucky to have my husband and kids; they keep me motivated."
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D3:16",
+          "text": "5 years already! Time flies- feels like just yesterday I put this dress on! Thanks, Caroline!"
+        },
+        {
+          "speaker": "Melanie",
+          "dia_id": "D3:20",
+          "text": "It so fun! We played games, ate good food, and just hung out together. Family moments make life awesome."
+        }
+      ]
+    }
+  ]
+}
