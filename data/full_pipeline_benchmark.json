@@ -1,0 +1,2502 @@
+[
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User prefers email notifications",
+        "new": "I now prefer WhatsApp notifications",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "Application normally uses dark mode",
+        "new": "For tomorrow presentation use light mode",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "ACMA backend uses FastAPI",
+        "expected": "Ignore"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA paper deadline is September 20",
+        "new": "ACMA paper deadline moved to September 27",
+        "expected": "Resolve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "Java is used for DSA coursework",
+        "new": "Python is used for ACMA project",
+        "expected": "Preserve"
+    },
+    {
+        "old": "ACMA backend uses FastAPI",
+        "new": "I switched ACMA backend from FastAPI to Flask",
+        "expected": "Resolve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "I prefer dark mode",
+        "new": "Application uses dark mode normally",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User lives in Hyderabad",
+        "new": "User travelled to Bangalore for conference",
+        "expected": "Preserve"
+    },
+    {
+        "old": "User is vegetarian",
+        "new": "I ate chicken at a wedding",
+        "expected": "Preserve"
+    }
+]

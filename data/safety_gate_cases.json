@@ -1,0 +1,202 @@
+[
+  {
+    "id": "case_001",
+    "name": "ACMA backend explicit change",
+    "new_statement": "I have switched the ACMA backend from FastAPI to Flask.",
+    "subject": "user",
+    "attribute": "backend_framework",
+    "scope": "general",
+    "context": "ACMA",
+    "expected_next_stage": "nli"
+  },
+  {
+    "id": "case_002",
+    "name": "ACMA backend same fact",
+    "new_statement": "The ACMA backend is built using FastAPI.",
+    "subject": "user",
+    "attribute": "backend_framework",
+    "scope": "general",
+    "context": "ACMA",
+    "expected_next_stage": "rule_action"
+  },
+  {
+    "id": "case_003",
+    "name": "ACMA backend temporal update",
+    "new_statement": "The ACMA backend currently uses Flask.",
+    "subject": "user",
+    "attribute": "backend_framework",
+    "scope": "general",
+    "context": "ACMA",
+    "expected_next_stage": "nli"
+  },
+  {
+    "id": "case_004",
+    "name": "Attendance database",
+    "new_statement": "The attendance portal uses React for its frontend.",
+    "subject": "user",
+    "attribute": "frontend_framework",
+    "scope": "general",
+    "context": "Attendance Portal",
+    "expected_next_stage": "rule_action"
+  },
+  {
+    "id": "case_005",
+    "name": "Attendance face recognition",
+    "new_statement": "I tested InsightFace on the attendance project today.",
+    "subject": "user",
+    "attribute": "face_recognition",
+    "scope": "general",
+    "context": "Student Attendance",
+    "expected_next_stage": "rule_action"
+  },
+  {
+    "id": "case_006",
+    "name": "ACMA database future change",
+    "new_statement": "I am now moving the ACMA metadata database from SQLite to PostgreSQL.",
+    "subject": "user",
+    "attribute": "database",
+    "scope": "general",
+    "context": "ACMA",
+    "expected_next_stage": "nli"
+  },
+  {
+    "id": "case_007",
+    "name": "Different project database",
+    "new_statement": "The student attendance system is using PostgreSQL.",
+    "subject": "user",
+    "attribute": "database",
+    "scope": "general",
+    "context": "Student Attendance",
+    "expected_next_stage": "nli"
+  },
+  {
+    "id": "case_008",
+    "name": "Programming context difference",
+    "new_statement": "I am using Java for my DSA coursework.",
+    "subject": "user",
+    "attribute": "programming_language",
+    "scope": "project",
+    "context": "DSA coursework",
+    "expected_next_stage": "rule_action"
+  },
+  {
+    "id": "case_009",
+    "name": "ACMA Python duplicate",
+    "new_statement": "Python is being used for the ACMA project.",
+    "subject": "user",
+    "attribute": "programming_language",
+    "scope": "project",
+    "context": "ACMA",
+    "expected_next_stage": "rule_action"
+  },
+  {
+    "id": "case_010",
+    "name": "ACMA Python explicit change",
+    "new_statement": "I no longer want to use Python for the ACMA project.",
+    "subject": "user",
+    "attribute": "programming_language",
+    "scope": "project",
+    "context": "ACMA",
+    "expected_next_stage": "nli"
+  },
+  {
+    "id": "case_011",
+    "name": "Dark mode exception",
+    "new_statement": "For tomorrow's presentation, use light mode.",
+    "subject": "user",
+    "attribute": "interface_theme",
+    "scope": "specific_event",
+    "context": "presentation",
+    "expected_next_stage": "nli"
+  },
+  {
+    "id": "case_012",
+    "name": "Vegetarian event exception",
+    "new_statement": "I ate chicken at a wedding.",
+    "subject": "user",
+    "attribute": "event",
+    "scope": "specific_event",
+    "context": "wedding",
+    "expected_next_stage": "nli"
+  },
+  {
+    "id": "case_013",
+    "name": "Paper status",
+    "new_statement": "I submitted the ACMA conference paper yesterday.",
+    "subject": "user",
+    "attribute": "paper_status",
+    "scope": "general",
+    "context": "ACMA",
+    "expected_next_stage": "nli"
+  },
+  {
+    "id": "case_014",
+    "name": "Deadline change",
+    "new_statement": "The ACMA paper deadline has been moved to September 27.",
+    "subject": "user",
+    "attribute": "project_deadline",
+    "scope": "general",
+    "context": "ACMA",
+    "expected_next_stage": "nli"
+  },
+  {
+    "id": "case_015",
+    "name": "ACMA local testing",
+    "new_statement": "The ACMA application is being tested locally.",
+    "subject": "user",
+    "attribute": "deployment",
+    "scope": "general",
+    "context": "ACMA",
+    "expected_next_stage": "rule_action"
+  },
+  {
+    "id": "case_016",
+    "name": "Attendance project event",
+    "new_statement": "I tested the attendance system with a class photograph today.",
+    "subject": "user",
+    "attribute": "attendance_project",
+    "scope": "specific_event",
+    "context": "Student Attendance",
+    "expected_next_stage": "nli"
+  },
+  {
+    "id": "case_017",
+    "name": "ACMA retrieval duplicate",
+    "new_statement": "ACMA retrieves related memories using semantic similarity.",
+    "subject": "user",
+    "attribute": "retrieval",
+    "scope": "general",
+    "context": "ACMA",
+    "expected_next_stage": "rule_action"
+  },
+  {
+    "id": "case_018",
+    "name": "ACMA safety architecture update",
+    "new_statement": "I am adding NLI to the ACMA memory conflict pipeline.",
+    "subject": "user",
+    "attribute": "memory_resolution",
+    "scope": "general",
+    "context": "ACMA",
+    "expected_next_stage": "nli"
+  },
+  {
+    "id": "case_019",
+    "name": "Unrelated education statement",
+    "new_statement": "I am studying operating systems this semester.",
+    "subject": "user",
+    "attribute": "study",
+    "scope": "general",
+    "context": "education",
+    "expected_next_stage": "rule_action"
+  },
+  {
+    "id": "case_020",
+    "name": "Ambiguous database possibility",
+    "new_statement": "I might move the ACMA project to PostgreSQL.",
+    "subject": "user",
+    "attribute": "database",
+    "scope": "future",
+    "context": "ACMA",
+    "expected_next_stage": "nli"
+  }
+]
