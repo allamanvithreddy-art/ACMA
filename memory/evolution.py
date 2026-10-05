@@ -5,40 +5,107 @@ from memory.store import MemoryStore
 
 
 class MemoryEvolution:
+    """
+    Apply the final ACMA memory decision to persistent storage.
+
+    Decision-making is intentionally separated from storage mutation.
+    """
+
+    VALID_ACTIONS = {
+        "Ignore",
+        "Preserve",
+        "Resolve",
+        "Ask",
+    }
+
     def __init__(self, store: MemoryStore) -> None:
         self.store = store
 
-    def apply_decision(self, old_memory: Memory | None, new_memory: Memory, decision: dict) -> dict:
+    def apply_decision(
+        self,
+        old_memory: Memory | None,
+        new_memory: Memory,
+        decision: dict,
+    ) -> dict:
+
         action = str(decision.get("action", ""))
         reason = str(decision.get("reason", ""))
-        if action not in {"Ignore", "Preserve", "Resolve", "Ask"}:
-            raise ValueError(f"Unsupported memory action: {action!r}")
+
+        if action not in self.VALID_ACTIONS:
+            raise ValueError(
+                f"Unsupported memory action: {action!r}"
+            )
+
+        # --------------------------------------------------------
+        # Ignore
+        # --------------------------------------------------------
 
         if action == "Ignore":
-            return {"action": action, "stored": False, "memory_id": old_memory.memory_id if old_memory else None, "reason": reason}
+            return {
+                "action": action,
+                "stored": False,
+                "memory_id": (
+                    old_memory.memory_id
+                    if old_memory
+                    else None
+                ),
+                "reason": reason,
+            }
 
         new_memory.last_decision = action
         new_memory.last_decision_reason = reason
+        new_memory.update_timestamp()
 
-        if action == "Ask":
-            new_memory.status = "pending"
-            new_memory.update_timestamp()
-            self.store.save_memory(new_memory)
-            return {"action": action, "stored": True, "status": new_memory.status, "memory_id": new_memory.memory_id, "reason": reason}
+        # --------------------------------------------------------
+        # Preserve
+        # --------------------------------------------------------
 
         if action == "Preserve":
             new_memory.status = "active"
-            new_memory.update_timestamp()
             self.store.save_memory(new_memory)
-            return {"action": action, "stored": True, "status": new_memory.status, "memory_id": new_memory.memory_id, "reason": reason}
+
+            return {
+                "action": action,
+                "stored": True,
+                "status": new_memory.status,
+                "memory_id": new_memory.memory_id,
+                "reason": reason,
+            }
+
+        # --------------------------------------------------------
+        # Ask
+        # --------------------------------------------------------
+
+        if action == "Ask":
+            new_memory.status = "pending"
+            self.store.save_memory(new_memory)
+
+            return {
+                "action": action,
+                "stored": True,
+                "status": new_memory.status,
+                "memory_id": new_memory.memory_id,
+                "reason": reason,
+            }
+
+        # --------------------------------------------------------
+        # Resolve
+        # --------------------------------------------------------
 
         if old_memory is None:
-            raise ValueError("Resolve requires an existing memory target")
+            raise ValueError(
+                "Resolve requires an existing memory target"
+            )
+
         if old_memory.user_id != new_memory.user_id:
-            raise ValueError("Cannot resolve memories belonging to different users")
+            raise ValueError(
+                "Cannot resolve memories belonging to different users"
+            )
 
         if old_memory.memory_id not in new_memory.supersedes:
-            new_memory.supersedes.append(old_memory.memory_id)
+            new_memory.supersedes.append(
+                old_memory.memory_id
+            )
 
         old_memory.status = "superseded"
         old_memory.superseded_by = new_memory.memory_id
@@ -48,18 +115,24 @@ class MemoryEvolution:
         new_memory.version = old_memory.version + 1
         new_memory.update_timestamp()
 
-        with self.store._connect() as connection:
-            connection.execute("BEGIN IMMEDIATE")
-            try:
-                self.store._upsert_connection(connection, old_memory)
-                self.store._upsert_connection(connection, new_memory)
-                connection.commit()
-            except Exception:
-                connection.rollback()
-                raise
+        # Both state changes must become visible atomically.
+        with self.store._connection() as connection:
+            self.store._upsert_connection(
+                connection,
+                old_memory,
+            )
+            self.store._upsert_connection(
+                connection,
+                new_memory,
+            )
 
-        # Update embedding cache for the newly active memory.
-        self.store.save_memory(new_memory)
+        # Keep the in-memory embedding cache consistent.
+        self.store._embedding_cache.pop(
+            old_memory.memory_id,
+            None,
+        )
+        self.store._cache_embedding(new_memory)
+
         return {
             "action": action,
             "stored": True,

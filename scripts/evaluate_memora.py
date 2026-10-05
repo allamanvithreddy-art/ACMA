@@ -150,12 +150,8 @@ def build_value_update_case(session: dict[str, Any]) -> Case | None:
         new_value,
         new_text,
         {
-            "is_update": True,
-            "is_replacement": True,
             "update_of": old_id,
             "supersedes": [old_id],
-            "extraction_source": "memora_structured_metadata",
-            "extraction_confidence": 1.0,
         },
     )
 
@@ -206,12 +202,8 @@ def build_preference_update_case(session: dict[str, Any]) -> Case | None:
         new_value,
         conversation or f"I now {new_preference} {item}.",
         {
-            "is_update": True,
-            "is_replacement": True,
             "update_of": old_id,
             "supersedes": [old_id],
-            "extraction_source": "memora_structured_metadata",
-            "extraction_confidence": 1.0,
         },
     )
 
@@ -278,14 +270,7 @@ def build_list_update_case(session: dict[str, Any]) -> Case | None:
         f"content:{field}",
         f"<existing-content> + {added_text}",
         conversation or f"New items were added to {field}.",
-        {
-            "additive_update": True,
-            "update_type": "redesigned_list_update",
-            "operation": "add",
-            "memory_updates": memory_updates,
-            "extraction_source": "memora_operation_details",
-            "extraction_confidence": 1.0,
-        },
+        {},
     )
 
     return Case(

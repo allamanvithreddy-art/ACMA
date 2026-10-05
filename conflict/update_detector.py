@@ -6,145 +6,74 @@ from typing import Any, Union
 from memory.schema import Memory
 
 
-# ============================================================
-# REAL-TIME UPDATE / CHANGE VOCABULARY
-# ============================================================
-
-STRONG_UPDATE_PATTERNS = {
-    # Explicit replacement / switching
+# Explicit language that normally indicates a state replacement.
+STRONG_UPDATE_PATTERNS: dict[str, float] = {
     r"\bswitched\s+from\b": 1.00,
     r"\bswitched\s+to\b": 0.98,
-    r"\bswitched\b.*\bto\b": 0.98,
-
-    r"\bchanged\s+from\b": 0.98,
-    r"\bchanged\s+to\b": 0.95,
-    r"\bchanged\b.*\bto\b": 0.95,
-
-    r"\breplaced\b": 0.98,
-    r"\breplace\b": 0.92,
-    r"\breplacing\b": 0.92,
-
+    r"\bchanged\s+from\b": 1.00,
+    r"\bchanged\s+to\b": 0.98,
+    r"\breplaced\b": 1.00,
+    r"\breplace\b": 0.95,
     r"\bmigrated\s+from\b": 0.98,
     r"\bmigrated\s+to\b": 0.98,
-    r"\bmigrated\b.*\bto\b": 0.98,
-
     r"\bmoved\s+from\b": 0.95,
     r"\bmoved\s+to\b": 0.95,
-    r"\bmoved\b.*\bto\b": 0.92,
-
-    r"\bshifted\s+from\b": 0.96,
-    r"\bshifted\s+to\b": 0.96,
-    r"\bshifted\b.*\bto\b": 0.95,
-
-    r"\btransitioned\s+from\b": 0.96,
-    r"\btransitioned\s+to\b": 0.96,
-    r"\btransitioned\b.*\bto\b": 0.95,
-
+    r"\bshifted\s+from\b": 0.95,
+    r"\bshifted\s+to\b": 0.95,
+    r"\btransitioned\s+from\b": 0.95,
+    r"\btransitioned\s+to\b": 0.95,
     r"\bconverted\s+from\b": 0.95,
     r"\bconverted\s+to\b": 0.95,
 
-    r"\bupgraded\s+from\b": 0.90,
-    r"\bupgraded\s+to\b": 0.90,
-
-    r"\bdowngraded\s+from\b": 0.90,
-    r"\bdowngraded\s+to\b": 0.90,
-
-    # Explicit invalidation / stopping
     r"\bno longer\b": 1.00,
     r"\bnot anymore\b": 0.98,
     r"\bnot any more\b": 0.98,
-
     r"\bstopped\s+using\b": 0.98,
     r"\bstopped\s+doing\b": 0.90,
-    r"\bstopped\s+preferring\b": 0.92,
-
     r"\bquit\s+using\b": 0.96,
-    r"\bquit\s+doing\b": 0.90,
-
-    r"\bdropped\b": 0.90,
-    r"\babandoned\b": 0.92,
     r"\bdiscontinued\b": 0.94,
 
-    # Adoption / new state
-    r"\bstarted\s+using\b": 0.88,
-    r"\bstarted\s+preferring\b": 0.88,
-    r"\bstarted\s+doing\b": 0.80,
-
-    r"\bbegan\s+using\b": 0.88,
-    r"\bbegan\s+to\s+use\b": 0.88,
-    r"\bbegan\s+preferring\b": 0.88,
-
-    r"\badopted\b": 0.90,
-    r"\badopting\b": 0.88,
-
-    r"\bnow\s+use\b": 0.98,
+    r"\bnow\s+use\b": 0.96,
     r"\bnow\s+prefer\b": 0.96,
-    r"\bnow\s+want\b": 0.90,
-    r"\bnow\s+have\b": 0.85,
-    r"\bnow\s+live\b": 0.95,
-    r"\bnow\s+work\b": 0.90,
-    r"\bnow\s+study\b": 0.88,
-
+    r"\bnow\s+want\b": 0.92,
     r"\bcurrently\s+use\b": 0.88,
-    r"\bcurrently\s+prefer\b": 0.86,
-    r"\bcurrently\s+live\b": 0.88,
-    r"\bcurrently\s+work\b": 0.86,
-    r"\bcurrently\s+study\b": 0.84,
+    r"\bcurrently\s+prefer\b": 0.88,
 
-    r"\bpresently\s+use\b": 0.84,
-    r"\bpresently\s+prefer\b": 0.82,
-
-    # Preference/state changes
-    r"\bchanged\s+my\s+mind\b": 0.92,
+    r"\bchanged\s+my\s+mind\b": 0.95,
     r"\bi\s+now\s+prefer\b": 0.96,
     r"\bi\s+no\s+longer\s+prefer\b": 1.00,
-    r"\bi\s+used\s+to\s+prefer\b": 0.82,
 
-    # Future/current policy changes
-    r"\bfrom\s+now\s+on\b": 0.94,
-    r"\bgoing\s+forward\b": 0.94,
+    r"\bfrom\s+now\s+on\b": 0.96,
+    r"\bgoing\s+forward\b": 0.96,
     r"\bhenceforth\b": 0.94,
     r"\beffective\s+(?:today|now|immediately)\b": 0.94,
 
-    # Temporal progression
-    r"\bpreviously\b": 0.72,
-    r"\bformerly\b": 0.80,
-    r"\bformer\b": 0.72,
-    r"\bearlier\b": 0.68,
-    r"\bused\s+to\b": 0.76,
-    r"\buntil\s+now\b": 0.84,
-    r"\bup\s+until\s+now\b": 0.86,
-    r"\bas\s+of\b": 0.82,
-    r"\bfrom\s+today\b": 0.88,
-    r"\bfrom\s+this\s+point\s+on\b": 0.94,
-
-    # Transition language
-    r"\binstead\s+of\b": 0.92,
-    r"\brather\s+than\b": 0.86,
-    r"\bin\s+place\s+of\b": 0.90,
+    r"\binstead\s+of\b": 0.94,
+    r"\brather\s+than\b": 0.90,
+    r"\bin\s+place\s+of\b": 0.92,
 }
 
 
-WEAK_UPDATE_PATTERNS = {
-    r"\bnow\b": 0.70,
-    r"\bcurrently\b": 0.68,
-    r"\bpresently\b": 0.65,
-    r"\brecently\b": 0.62,
-    r"\blately\b": 0.62,
-    r"\bthese\s+days\b": 0.64,
-    r"\btoday\b": 0.55,
-    r"\bnew\b": 0.50,
-    r"\blatest\b": 0.55,
-    r"\bchanged\b": 0.65,
-    r"\bswitched\b": 0.75,
-    r"\bmoved\b": 0.65,
-    r"\bstarted\b": 0.62,
-    r"\bbegan\b": 0.62,
-    r"\bprefer\b": 0.50,
+WEAK_UPDATE_PATTERNS: dict[str, float] = {
+    r"\bnow\b": 0.60,
+    r"\bcurrently\b": 0.58,
+    r"\bpresently\b": 0.55,
+    r"\brecently\b": 0.52,
+    r"\blately\b": 0.52,
+    r"\bthese\s+days\b": 0.55,
+    r"\bchanged\b": 0.60,
+    r"\bswitched\b": 0.65,
+    r"\bmoved\b": 0.60,
+    r"\bstarted\b": 0.55,
+    r"\bbegan\b": 0.55,
+    r"\bused\s+to\b": 0.65,
+    r"\bpreviously\b": 0.60,
+    r"\bformerly\b": 0.65,
+    r"\bearlier\b": 0.55,
 }
 
 
-TEMPORARY_PATTERNS = {
+TEMPORARY_PATTERNS: set[str] = {
     r"\btemporarily\b",
     r"\bfor\s+now\b",
     r"\bfor\s+today\b",
@@ -153,22 +82,14 @@ TEMPORARY_PATTERNS = {
     r"\bthis\s+time\b",
     r"\bthis\s+week\b",
     r"\bthis\s+month\b",
-    r"\bfor\s+the\s+day\b",
-    r"\bfor\s+the\s+meeting\b",
-    r"\bfor\s+the\s+presentation\b",
-    r"\bfor\s+the\s+event\b",
-    r"\bfor\s+the\s+wedding\b",
-    r"\bduring\s+the\b",
-    r"\bwhile\s+at\b",
-    r"\bwhile\s+in\b",
+    r"\bduring\s+this\s+period\b",
+    r"\bin\s+this\s+context\b",
     r"\bonly\s+for\b",
     r"\bjust\s+for\b",
-    r"\bthis\s+session\b",
-    r"\bthis\s+conversation\b",
 }
 
 
-NEGATION_PATTERNS = {
+NEGATION_PATTERNS: set[str] = {
     r"\bnot\b",
     r"\bnever\b",
     r"\bno\s+longer\b",
@@ -184,12 +105,12 @@ NEGATION_PATTERNS = {
 }
 
 
-TRANSITION_PATTERNS = {
+TRANSITION_PATTERNS: dict[str, float] = {
     r"\bfrom\s+.+?\s+to\s+.+": 1.00,
     r"\bfrom\s+.+?\s+into\s+.+": 0.96,
     r"\bfrom\s+.+?\s+toward\s+.+": 0.90,
     r"\b.+?\s+instead\s+of\s+.+": 0.94,
-    r"\b.+?\s+rather\s+than\s+.+": 0.88,
+    r"\b.+?\s+rather\s+than\s+.+": 0.90,
     r"\b.+?\s+in\s+place\s+of\s+.+": 0.92,
 }
 
@@ -198,55 +119,52 @@ def _extract_text(
     statement_or_memory: Union[str, Memory, dict[str, Any]],
 ) -> tuple[str, dict[str, Any]]:
     if isinstance(statement_or_memory, Memory):
-        text = str(
-            statement_or_memory.text
-            or statement_or_memory.value
-            or ""
+        return (
+            str(statement_or_memory.text or statement_or_memory.value or ""),
+            dict(statement_or_memory.metadata or {}),
         )
-        meta = statement_or_memory.metadata or {}
 
-    elif isinstance(statement_or_memory, dict):
-        text = str(
-            statement_or_memory.get("text")
-            or statement_or_memory.get("value")
-            or ""
+    if isinstance(statement_or_memory, dict):
+        return (
+            str(
+                statement_or_memory.get("text")
+                or statement_or_memory.get("value")
+                or ""
+            ),
+            dict(statement_or_memory.get("metadata") or {}),
         )
-        meta = statement_or_memory.get("metadata") or {}
 
-    else:
-        text = str(statement_or_memory or "")
-        meta = {}
-
-    return text, meta
+    return str(statement_or_memory or ""), {}
 
 
 def _find_patterns(
     text: str,
     patterns: dict[str, float],
 ) -> tuple[list[str], float]:
-    markers = []
-    max_strength = 0.0
+    matches: list[str] = []
+    maximum = 0.0
 
     for pattern, weight in patterns.items():
         if re.search(pattern, text, flags=re.IGNORECASE):
-            markers.append(pattern)
-            max_strength = max(max_strength, weight)
+            matches.append(pattern)
+            maximum = max(maximum, weight)
 
-    return markers, max_strength
+    return matches, maximum
 
 
 def detect_update_signals(
     statement_or_memory: Union[str, Memory, dict[str, Any]],
 ) -> dict[str, Any]:
     """
-    Runtime linguistic update detection.
+    Detect linguistic evidence that a statement represents a change.
 
-    This analyzes the actual incoming statement. It does NOT make
-    the final Ignore/Preserve/Resolve/Ask decision.
+    Important:
+    This function does not trust dataset operation labels or benchmark
+    annotations. It only analyzes the incoming statement itself.
     """
 
-    text, meta = _extract_text(statement_or_memory)
-    normalized = " ".join(text.lower().split())
+    text, _ = _extract_text(statement_or_memory)
+    normalized = " ".join(text.casefold().split())
 
     strong_markers, strong_score = _find_patterns(
         normalized,
@@ -260,12 +178,12 @@ def detect_update_signals(
 
     temporary_markers, _ = _find_patterns(
         normalized,
-        {p: 1.0 for p in TEMPORARY_PATTERNS},
+        {pattern: 1.0 for pattern in TEMPORARY_PATTERNS},
     )
 
     negation_markers, _ = _find_patterns(
         normalized,
-        {p: 1.0 for p in NEGATION_PATTERNS},
+        {pattern: 1.0 for pattern in NEGATION_PATTERNS},
     )
 
     transition_markers, transition_score = _find_patterns(
@@ -273,22 +191,16 @@ def detect_update_signals(
         TRANSITION_PATTERNS,
     )
 
-    metadata_is_update = meta.get("is_update") is True
-    metadata_is_replacement = meta.get("is_replacement") is True
-    metadata_targeted = bool(
-        meta.get("update_of")
-        or meta.get("supersedes")
+    explicit_replacement_signal = (
+        transition_score >= 0.90
+        or strong_score >= 0.94
     )
 
-    # Structured additive-memory evidence.
-    # This is different from replacement:
-    #   old list + new items -> merge/preserve
-    additive_update = bool(
-        meta.get("additive_update")
-        or meta.get("is_additive_update")
-        or meta.get("update_type") == "redesigned_list_update"
-        or meta.get("operation") == "add"
-        or meta.get("memory_updates")
+    temporary_context = bool(temporary_markers)
+
+    likely_temporary_change = (
+        temporary_context
+        and not explicit_replacement_signal
     )
 
     score = max(
@@ -297,59 +209,20 @@ def detect_update_signals(
         weak_score,
     )
 
-    if metadata_is_update:
-        score = max(score, 0.95)
-
-    if metadata_is_replacement:
-        score = max(score, 0.98)
-
-    if metadata_targeted:
-        score = 1.00
-
-    explicit_replacement_signal = (
-        metadata_is_replacement
-        or metadata_targeted
-        or transition_score >= 0.94
-        or strong_score >= 0.94
-    )
-
-    temporary_context = bool(temporary_markers)
-
-    strong_permanent_change = (
-        explicit_replacement_signal
-        or transition_score >= 0.94
-    )
-
-    likely_temporary_change = (
-        temporary_context
-        and not strong_permanent_change
-    )
-
     has_signal = (
-        metadata_is_update
-        or metadata_is_replacement
-        or metadata_targeted
-        or strong_score >= 0.70
+        strong_score >= 0.70
         or transition_score >= 0.80
         or (
-            weak_score >= 0.60
+            weak_score >= 0.55
             and not likely_temporary_change
         )
     )
 
-    markers = []
-    markers.extend(
-        f"strong:{m}"
-        for m in strong_markers
-    )
-    markers.extend(
-        f"weak:{m}"
-        for m in weak_markers
-    )
-    markers.extend(
-        f"transition:{m}"
-        for m in transition_markers
-    )
+    markers = [
+        *(f"strong:{marker}" for marker in strong_markers),
+        *(f"weak:{marker}" for marker in weak_markers),
+        *(f"transition:{marker}" for marker in transition_markers),
+    ]
 
     return {
         "has_update_signal": has_signal,
@@ -357,33 +230,14 @@ def detect_update_signals(
         "score": score,
         "markers": markers,
         "update_detected": has_signal,
-
-        "explicit_replacement_signal":
-            explicit_replacement_signal,
-
-        "transition_detected":
-            transition_score >= 0.80,
-
-        "transition_strength":
-            transition_score,
-
-        "temporary_context":
-            temporary_context,
-
-        "temporary_markers":
-            temporary_markers,
-
-        "likely_temporary_change":
-            likely_temporary_change,
-
-        "negation_detected":
-            bool(negation_markers),
-
-        "negation_markers":
-            negation_markers,
-
-        "additive_update": additive_update,
-
+        "explicit_replacement_signal": explicit_replacement_signal,
+        "transition_detected": transition_score >= 0.80,
+        "transition_strength": transition_score,
+        "temporary_context": temporary_context,
+        "temporary_markers": temporary_markers,
+        "likely_temporary_change": likely_temporary_change,
+        "negation_detected": bool(negation_markers),
+        "negation_markers": negation_markers,
         "text": text,
     }
 
@@ -392,208 +246,105 @@ def analyze_update(
     old_memory: Memory,
     new_memory: Memory,
 ) -> dict[str, Any]:
+    """
+    Compare two memories and determine whether the new memory contains
+    evidence of replacing the old one.
+
+    Only genuine memory lineage identifiers are accepted as structured
+    targeting signals. Dataset operation labels are intentionally ignored.
+    """
 
     new_meta = new_memory.metadata or {}
 
     update_of = new_meta.get("update_of")
 
-    supersedes = (
-        new_meta.get("supersedes")
-        or []
-    )
-
+    supersedes = new_meta.get("supersedes") or []
     if isinstance(supersedes, str):
         supersedes = [supersedes]
-
-    explicit_update = (
-        new_meta.get("is_update") is True
-    )
 
     explicit_supersession = (
         old_memory.memory_id in supersedes
         or update_of == old_memory.memory_id
     )
 
-    explicit_replacement = (
-        new_meta.get("is_replacement")
-    )
-
-    if (
-        explicit_replacement is not None
-        and not isinstance(
-            explicit_replacement,
-            bool,
-        )
-    ):
-        raise TypeError(
-            "metadata.is_replacement must be boolean or null"
-        )
-
-    new_signals = detect_update_signals(
-        new_memory
-    )
-
-    linguistic_score = float(
-        new_signals["signal_strength"]
-    )
-
-    additive_update = bool(
-        new_signals.get("additive_update")
-        or new_meta.get("additive_update")
-        or new_meta.get("is_additive_update")
-        or new_meta.get("update_type") == "redesigned_list_update"
-        or new_meta.get("memory_updates")
-    )
+    signals = detect_update_signals(new_memory)
 
     temporal_progression = False
 
     if old_memory.time and new_memory.time:
-        try:
-            temporal_progression = (
-                str(new_memory.time)
-                > str(old_memory.time)
-            )
-        except Exception:
-            temporal_progression = False
+        temporal_progression = str(new_memory.time) > str(old_memory.time)
 
     same_subject = (
         bool(old_memory.subject)
         and bool(new_memory.subject)
-        and old_memory.subject.strip().casefold()
-        == new_memory.subject.strip().casefold()
+        and old_memory.subject.casefold().strip()
+        == new_memory.subject.casefold().strip()
     )
 
     same_attribute = (
         bool(old_memory.attribute)
         and bool(new_memory.attribute)
-        and old_memory.attribute.strip().casefold()
-        == new_memory.attribute.strip().casefold()
+        and old_memory.attribute.casefold().strip()
+        == new_memory.attribute.casefold().strip()
     )
 
-    same_subj_attr = (
-        same_subject
-        and same_attribute
+    same_subject_and_attribute = (
+        same_subject and same_attribute
     )
 
     different_value = (
-        old_memory.value.strip().casefold()
-        != new_memory.value.strip().casefold()
+        old_memory.value.casefold().strip()
+        != new_memory.value.casefold().strip()
+    )
+
+    strong_replacement_signal = (
+        signals["explicit_replacement_signal"]
+        or signals["transition_detected"]
     )
 
     targeted = (
         explicit_supersession
         or (
-            explicit_update
-            and update_of == old_memory.memory_id
-        )
-    )
-
-    # IMPORTANT:
-    # A linguistic update signal alone does NOT authorize replacement.
-    # Words such as "currently", "started", "began", "recently", etc.
-    # indicate change/current state, but they do not prove that an older
-    # memory should be superseded.
-    #
-    # Replacement requires stronger evidence such as:
-    #   - switched from A to B
-    #   - changed from A to B
-    #   - replaced A with B
-    #   - no longer ...
-    #   - instead of ...
-    #   - explicit replacement metadata
-
-    strong_replacement_signal = (
-        new_signals["explicit_replacement_signal"]
-        or new_signals["transition_detected"]
-    )
-
-    if (
-        not targeted
-        and same_subj_attr
-        and different_value
-        and not new_signals["likely_temporary_change"]
-        and strong_replacement_signal
-    ):
-        targeted = True
-
-    if explicit_replacement is not None:
-        effective_replacement = explicit_replacement
-    else:
-        effective_replacement = (
-            targeted
+            same_subject_and_attribute
             and different_value
-            and not new_signals["likely_temporary_change"]
             and strong_replacement_signal
+            and not signals["likely_temporary_change"]
         )
+    )
+
+    replacement_supported = (
+        targeted
+        and different_value
+        and not signals["likely_temporary_change"]
+    )
 
     return {
-        "explicit_update":
-            explicit_update,
-
-        "explicit_supersession":
-            explicit_supersession,
-
-        "explicit_replacement":
-            effective_replacement,
-
-        "targeted_to_old_memory":
-            targeted,
-
-        "update_of":
-            update_of,
-
-        "supersedes":
-            list(supersedes),
-
-        "linguistic_signal":
-            linguistic_score,
-
-        "linguistic_markers":
-            new_signals["markers"],
-
-        "transition_detected":
-            new_signals["transition_detected"],
-
-        "temporary_context":
-            new_signals["temporary_context"],
-
-        "likely_temporary_change":
-            new_signals["likely_temporary_change"],
-
-        "negation_detected":
-            new_signals["negation_detected"],
-
-        "temporal_progression":
-            temporal_progression,
-
-        "same_subject_and_attribute":
-            same_subj_attr,
-
-        "same_subject":
-            same_subject,
-
-        "same_attribute":
-            same_attribute,
-
-        "different_value":
-            different_value,
-
-        "replacement_supported":
-            effective_replacement,
-
-        "additive_update":
-            additive_update,
-
-        "evidence_source":
-            new_meta.get("extraction_source")
-            or "linguistic_and_metadata",
-
-        "evidence_confidence":
-            new_meta.get("extraction_confidence")
-            or max(
-                linguistic_score,
-                0.8 if targeted else 0.0,
-            ),
+        "explicit_supersession": explicit_supersession,
+        "targeted_to_old_memory": targeted,
+        "update_of": update_of,
+        "supersedes": list(supersedes),
+        "linguistic_signal": signals["signal_strength"],
+        "linguistic_markers": signals["markers"],
+        "transition_detected": signals["transition_detected"],
+        "temporary_context": signals["temporary_context"],
+        "likely_temporary_change": signals["likely_temporary_change"],
+        "negation_detected": signals["negation_detected"],
+        "temporal_progression": temporal_progression,
+        "same_subject_and_attribute": same_subject_and_attribute,
+        "same_subject": same_subject,
+        "same_attribute": same_attribute,
+        "different_value": different_value,
+        "replacement_supported": replacement_supported,
+        "evidence_source": (
+            "memory_lineage"
+            if explicit_supersession
+            else "incoming_text"
+        ),
+        "evidence_confidence": (
+            1.0
+            if explicit_supersession
+            else signals["signal_strength"]
+        ),
     }
 
 
@@ -601,8 +352,4 @@ def detect_update(
     old_memory: Memory,
     new_memory: Memory,
 ) -> dict[str, Any]:
-    """Backward-compatible wrapper."""
-    return analyze_update(
-        old_memory,
-        new_memory,
-    )
+    return analyze_update(old_memory, new_memory)
