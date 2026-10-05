@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from dataclasses import dataclass, field, asdict
+from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from typing import Any
 from uuid import uuid4
@@ -13,60 +13,45 @@ def utc_now() -> str:
 @dataclass
 class Memory:
     memory_id: str = field(default_factory=lambda: str(uuid4()))
+    user_id: str = "default_user"
     text: str = ""
-
     subject: str = ""
     attribute: str = ""
     value: str = ""
-
     scope: str = ""
     context: str = ""
     time: str | None = None
-
     source: str = "user"
     confidence: float | None = None
     importance: float | None = None
-
-    # Extraction output. These fields describe evidence, not domain vocabulary.
     metadata: dict[str, Any] = field(default_factory=dict)
-
     status: str = "active"
     version: int = 1
-
     supersedes: list[str] = field(default_factory=list)
     superseded_by: str | None = None
     relationship_ids: list[str] = field(default_factory=list)
-
     created_at: str = field(default_factory=utc_now)
     updated_at: str = field(default_factory=utc_now)
-
     last_decision: str | None = None
     last_decision_reason: str | None = None
     last_decision_confidence: float | None = None
 
     def __post_init__(self) -> None:
-        self.memory_id = str(self.memory_id)
-        self.text = str(self.text or "").strip()
-        self.subject = str(self.subject or "").strip()
-        self.attribute = str(self.attribute or "").strip()
-        self.value = str(self.value or self.text).strip()
-        self.scope = str(self.scope or "").strip()
-        self.context = str(self.context or "").strip()
-        self.source = str(self.source or "user").strip()
-
+        for name in ("memory_id", "user_id", "text", "subject", "attribute", "value", "scope", "context", "source"):
+            setattr(self, name, " ".join(str(getattr(self, name) or "").strip().split()))
+        if not self.user_id:
+            self.user_id = "default_user"
         if not isinstance(self.metadata, dict):
             raise TypeError("Memory.metadata must be a dictionary")
-
         for name in ("confidence", "importance"):
             value = getattr(self, name)
-            if value is not None and not 0.0 <= float(value) <= 1.0:
-                raise ValueError(f"{name} must be between 0 and 1")
             if value is not None:
-                setattr(self, name, float(value))
-
+                value = float(value)
+                if not 0.0 <= value <= 1.0:
+                    raise ValueError(f"{name} must be between 0 and 1")
+                setattr(self, name, value)
         if self.version < 1:
             raise ValueError("Memory.version must be >= 1")
-
         if self.status not in {"active", "pending", "superseded", "archived"}:
             raise ValueError(f"Unsupported memory status: {self.status}")
 
@@ -82,33 +67,17 @@ class Memory:
 
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> "Memory":
-        data = dict(data)
-
-        # Migrate the older representation without silently discarding fields.
-        if "status" not in data:
-            data["status"] = (
-                "active" if data.pop("active", True) else "superseded"
-            )
-
-        if "metadata" not in data:
-            data["metadata"] = {}
-
-        if "text" not in data:
-            data["text"] = str(data.get("value", ""))
-
-        return cls(**{
-            key: value
-            for key, value in data.items()
-            if key in cls.__dataclass_fields__
-        })
+        source = dict(data)
+        if "status" not in source:
+            source["status"] = "active" if source.pop("active", True) else "superseded"
+        source.setdefault("metadata", {})
+        source.setdefault("text", str(source.get("value", "")))
+        source.setdefault("user_id", "default_user")
+        allowed = set(cls.__dataclass_fields__)
+        return cls(**{k: v for k, v in source.items() if k in allowed})
 
     def __repr__(self) -> str:
-        return (
-            f"Memory(id={self.memory_id!r}, "
-            f"attribute={self.attribute!r}, "
-            f"scope={self.scope!r}, "
-            f"status={self.status!r})"
-        )
+        return f"Memory(id={self.memory_id!r}, attribute={self.attribute!r}, scope={self.scope!r}, status={self.status!r})"
 
 
 @dataclass
@@ -123,12 +92,8 @@ class MemoryQuery:
     metadata: dict[str, Any] = field(default_factory=dict)
 
     def __post_init__(self) -> None:
-        for name in (
-            "text", "subject", "attribute", "value",
-            "scope", "context",
-        ):
-            setattr(self, name, str(getattr(self, name) or "").strip())
-
+        for name in ("text", "subject", "attribute", "value", "scope", "context"):
+            setattr(self, name, " ".join(str(getattr(self, name) or "").strip().split()))
         if not isinstance(self.metadata, dict):
             raise TypeError("MemoryQuery.metadata must be a dictionary")
 
@@ -143,17 +108,4 @@ class MemoryQuery:
             context=memory.context,
             time=memory.time,
             metadata=dict(memory.metadata),
-        )
-
-    def to_memory(self, memory_id: str | None = None) -> Memory:
-        return Memory(
-            memory_id=memory_id or str(uuid4()),
-            text=self.text or self.value,
-            subject=self.subject,
-            attribute=self.attribute,
-            value=self.value or self.text,
-            scope=self.scope,
-            context=self.context,
-            time=self.time,
-            metadata=dict(self.metadata),
         )

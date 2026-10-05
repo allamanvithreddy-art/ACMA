@@ -2,6 +2,7 @@ PRAGMA foreign_keys = ON;
 
 CREATE TABLE IF NOT EXISTS memories (
     memory_id TEXT PRIMARY KEY,
+    user_id TEXT NOT NULL DEFAULT 'default_user',
     text TEXT NOT NULL,
     subject TEXT NOT NULL,
     attribute TEXT NOT NULL,
@@ -24,8 +25,8 @@ CREATE TABLE IF NOT EXISTS memories (
     last_decision_confidence REAL
 );
 
-CREATE INDEX IF NOT EXISTS idx_memories_status
-    ON memories(status);
+CREATE INDEX IF NOT EXISTS idx_memories_status_user
+    ON memories(status, user_id);
 
-CREATE INDEX IF NOT EXISTS idx_memories_subject_attribute
-    ON memories(subject, attribute);
+CREATE INDEX IF NOT EXISTS idx_memories_subject_attribute_user
+    ON memories(subject, attribute, user_id);

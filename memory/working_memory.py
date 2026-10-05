@@ -1,12 +1,12 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from datetime import datetime, timezone, timedelta
+from datetime import datetime, timedelta, timezone
 from threading import RLock
-from typing import Any, Union
+from typing import Any, Callable, Union
 from uuid import uuid4
 
-from memory.schema import Memory, MemoryQuery, utc_now
+from memory.schema import Memory, MemoryQuery
 
 
 @dataclass
@@ -26,9 +26,8 @@ class WorkingMemoryItem:
         now = current_time or datetime.now(timezone.utc)
         if self.expires_at is not None and now >= self.expires_at:
             return True
-        if max_turns is not None and current_turn is not None:
-            if (current_turn - self.turn_index) > max_turns:
-                return True
+        if max_turns is not None and current_turn is not None and current_turn - self.turn_index > max_turns:
+            return True
         return False
 
     def touch(self) -> None:
@@ -50,14 +49,7 @@ class WorkingMemoryItem:
 
 
 class SessionWorkingContext:
-    def __init__(
-        self,
-        user_id: str,
-        session_id: str,
-        capacity: int = 30,
-        default_ttl_seconds: float = 3600.0,
-        default_max_turns: int = 15,
-    ) -> None:
+    def __init__(self, user_id: str, session_id: str, capacity: int = 30, default_ttl_seconds: float = 3600.0, default_max_turns: int = 15) -> None:
         self.user_id = user_id
         self.session_id = session_id
         self.capacity = capacity
@@ -65,149 +57,94 @@ class SessionWorkingContext:
         self.default_max_turns = default_max_turns
         self.items: list[WorkingMemoryItem] = []
         self.task_context: dict[str, Any] = {}
-        self.turn_counter: int = 0
-        self.created_at = datetime.now(timezone.utc)
-        self.last_active_at = datetime.now(timezone.utc)
+        self.turn_counter = 0
         self._lock = RLock()
 
-    def add(
-        self,
-        memory: Union[Memory, dict[str, Any]],
-        ttl_seconds: float | None = None,
-        importance: float | None = None,
-        metadata: dict[str, Any] | None = None,
-    ) -> WorkingMemoryItem:
+    def _prune(self) -> None:
+        now = datetime.now(timezone.utc)
+        self.items = [
+            item for item in self.items
+            if not item.is_expired(current_time=now, current_turn=self.turn_counter, max_turns=self.default_max_turns)
+        ]
+
+    def add(self, memory: Memory, ttl_seconds: float | None = None, importance: float | None = None, metadata: dict[str, Any] | None = None) -> WorkingMemoryItem:
         with self._lock:
-            self.last_active_at = datetime.now(timezone.utc)
-            if isinstance(memory, dict):
-                mem_obj = Memory.from_dict(memory)
-            else:
-                mem_obj = memory
-
-            ttl = ttl_seconds if ttl_seconds is not None else self.default_ttl_seconds
-            expires_at = (
-                datetime.now(timezone.utc) + timedelta(seconds=ttl)
-                if ttl > 0
-                else None
-            )
-
+            self._prune()
+            ttl = self.default_ttl_seconds if ttl_seconds is None else ttl_seconds
+            expires_at = datetime.now(timezone.utc) + timedelta(seconds=ttl) if ttl > 0 else None
             item = WorkingMemoryItem(
-                memory=mem_obj,
+                memory=memory,
                 user_id=self.user_id,
                 session_id=self.session_id,
                 expires_at=expires_at,
                 turn_index=self.turn_counter,
-                importance=importance if importance is not None else (mem_obj.importance or 0.5),
+                importance=importance if importance is not None else (memory.importance or 0.5),
                 metadata=dict(metadata or {}),
             )
-
-            # Evict expired items first
-            self._prune_expired_locked()
-
-            # Capacity management (FIFO for lowest importance items)
             if len(self.items) >= self.capacity:
-                # Remove oldest item with lowest importance
-                self.items.sort(key=lambda it: (it.importance, -it.turn_index))
+                self.items.sort(key=lambda entry: (entry.importance, entry.turn_index))
                 self.items.pop(0)
-
             self.items.append(item)
             return item
 
-    def get_recent(self, max_items: int = 10, include_expired: bool = False) -> list[Memory]:
+    def recent(self, max_items: int = 10) -> list[Memory]:
         with self._lock:
-            self._prune_expired_locked()
-            items = self.items if include_expired else [it for it in self.items if not it.is_expired(current_turn=self.turn_counter, max_turns=self.default_max_turns)]
-            for it in items:
-                it.touch()
-            # Return most recent first
-            sorted_items = sorted(items, key=lambda it: it.created_at, reverse=True)
-            return [it.memory for it in sorted_items[:max_items]]
+            self._prune()
+            ordered = sorted(self.items, key=lambda entry: entry.created_at, reverse=True)
+            for item in ordered[:max_items]:
+                item.touch()
+            return [item.memory for item in ordered[:max_items]]
 
-    def find_matches(self, query: Union[Memory, MemoryQuery], similarity_fn=None, threshold: float = 0.5) -> list[tuple[Memory, float]]:
+    def search(self, query: Memory | MemoryQuery, top_k: int = 5, threshold: float = 0.45, similarity_fn: Callable[[Memory, Memory | MemoryQuery], float] | None = None) -> list[tuple[Memory, float]]:
         with self._lock:
-            self._prune_expired_locked()
-            active_items = [it for it in self.items if not it.is_expired(current_turn=self.turn_counter, max_turns=self.default_max_turns)]
-            results = []
-            q_text = (getattr(query, "text", "") or getattr(query, "value", "")).strip().casefold()
-            q_subj = getattr(query, "subject", "").strip().casefold()
-            q_attr = getattr(query, "attribute", "").strip().casefold()
-
-            for item in active_items:
-                mem = item.memory
+            self._prune()
+            q_text = str(getattr(query, "text", "") or getattr(query, "value", "")).casefold()
+            q_subject = str(getattr(query, "subject", "")).strip().casefold()
+            q_attribute = str(getattr(query, "attribute", "")).strip().casefold()
+            results: list[tuple[Memory, float]] = []
+            for item in self.items:
+                memory = item.memory
                 score = 0.0
-                m_text = (mem.text or mem.value).strip().casefold()
-                m_subj = mem.subject.strip().casefold()
-                m_attr = mem.attribute.strip().casefold()
-
-                if q_subj and m_subj and q_subj == m_subj:
-                    score += 0.3
-                if q_attr and m_attr and q_attr == m_attr:
-                    score += 0.4
-                if q_text and m_text:
-                    if q_text == m_text:
+                if q_subject and memory.subject.strip().casefold() == q_subject:
+                    score += 0.35
+                if q_attribute and memory.attribute.strip().casefold() == q_attribute:
+                    score += 0.45
+                text = str(memory.text or memory.value).casefold()
+                if q_text and text:
+                    if q_text == text:
                         score = 1.0
-                    elif q_text in m_text or m_text in q_text:
+                    elif q_text in text or text in q_text:
                         score = max(score, 0.75)
-
                 if similarity_fn is not None and score < 1.0:
-                    try:
-                        sim = similarity_fn(mem, query)
-                        score = max(score, float(sim))
-                    except Exception:
-                        pass
-
+                    score = max(score, float(similarity_fn(memory, query)))
                 if score >= threshold:
                     item.touch()
-                    results.append((mem, score))
-
-            results.sort(key=lambda x: x[1], reverse=True)
-            return results
+                    results.append((memory, min(score, 1.0)))
+            results.sort(key=lambda item: item[1], reverse=True)
+            return results[:top_k]
 
     def step_turn(self) -> int:
         with self._lock:
             self.turn_counter += 1
-            self.last_active_at = datetime.now(timezone.utc)
-            self._prune_expired_locked()
+            self._prune()
             return self.turn_counter
 
     def set_task_context(self, key: str, value: Any) -> None:
         with self._lock:
-            self.task_context[key] = value
-            self.last_active_at = datetime.now(timezone.utc)
+            self.task_context[str(key)] = value
 
     def get_task_context(self, key: str | None = None) -> Any:
         with self._lock:
-            if key is None:
-                return dict(self.task_context)
-            return self.task_context.get(key)
+            return dict(self.task_context) if key is None else self.task_context.get(key)
 
     def clear(self) -> None:
         with self._lock:
             self.items.clear()
             self.task_context.clear()
 
-    def _prune_expired_locked(self) -> int:
-        now = datetime.now(timezone.utc)
-        before = len(self.items)
-        self.items = [
-            it for it in self.items
-            if not it.is_expired(current_time=now, current_turn=self.turn_counter, max_turns=self.default_max_turns)
-        ]
-        return before - len(self.items)
-
 
 class WorkingMemory:
-    """
-    Multi-tenant, multi-session Working Memory manager for ACMA.
-    Maintains temporary task and conversation context with automatic expiration,
-    preventing context leakage between users or sessions.
-    """
-    def __init__(
-        self,
-        default_capacity: int = 30,
-        default_ttl_seconds: float = 3600.0,
-        default_max_turns: int = 15,
-    ) -> None:
+    def __init__(self, default_capacity: int = 30, default_ttl_seconds: float = 3600.0, default_max_turns: int = 15) -> None:
         self.default_capacity = default_capacity
         self.default_ttl_seconds = default_ttl_seconds
         self.default_max_turns = default_max_turns
@@ -217,92 +154,36 @@ class WorkingMemory:
     def _get_session(self, user_id: str, session_id: str) -> SessionWorkingContext:
         key = (str(user_id).strip(), str(session_id).strip())
         with self._lock:
-            if key not in self._sessions:
-                self._sessions[key] = SessionWorkingContext(
-                    user_id=key[0],
-                    session_id=key[1],
-                    capacity=self.default_capacity,
-                    default_ttl_seconds=self.default_ttl_seconds,
-                    default_max_turns=self.default_max_turns,
-                )
-            return self._sessions[key]
+            return self._sessions.setdefault(
+                key,
+                SessionWorkingContext(
+                    key[0], key[1], self.default_capacity, self.default_ttl_seconds, self.default_max_turns,
+                ),
+            )
 
-    def add_memory(
-        self,
-        memory: Union[Memory, dict[str, Any]],
-        user_id: str = "default_user",
-        session_id: str = "default_session",
-        ttl_seconds: float | None = None,
-        importance: float | None = None,
-        metadata: dict[str, Any] | None = None,
-    ) -> WorkingMemoryItem:
-        session = self._get_session(user_id, session_id)
-        return session.add(
-            memory=memory,
-            ttl_seconds=ttl_seconds,
-            importance=importance,
-            metadata=metadata,
-        )
+    def add_memory(self, memory: Memory | dict[str, Any], user_id: str = "default_user", session_id: str = "default_session", ttl_seconds: float | None = None, importance: float | None = None, metadata: dict[str, Any] | None = None) -> WorkingMemoryItem:
+        memory_obj = Memory.from_dict(memory) if isinstance(memory, dict) else memory
+        memory_obj.user_id = str(user_id)
+        return self._get_session(user_id, session_id).add(memory_obj, ttl_seconds, importance, metadata)
 
-    def get_recent_memories(
-        self,
-        user_id: str = "default_user",
-        session_id: str = "default_session",
-        max_items: int = 10,
-    ) -> list[Memory]:
-        session = self._get_session(user_id, session_id)
-        return session.get_recent(max_items=max_items)
+    def get_recent_memories(self, user_id: str = "default_user", session_id: str = "default_session", max_items: int = 10) -> list[Memory]:
+        return self._get_session(user_id, session_id).recent(max_items)
 
-    def search(
-        self,
-        query: Union[Memory, MemoryQuery],
-        user_id: str = "default_user",
-        session_id: str = "default_session",
-        top_k: int = 5,
-        threshold: float = 0.4,
-    ) -> list[tuple[Memory, float]]:
-        session = self._get_session(user_id, session_id)
-        matches = session.find_matches(query, threshold=threshold)
-        return matches[:top_k]
+    def search(self, query: Memory | MemoryQuery, user_id: str = "default_user", session_id: str = "default_session", top_k: int = 5, threshold: float = 0.45, similarity_fn: Callable[[Memory, Memory | MemoryQuery], float] | None = None) -> list[tuple[Memory, float]]:
+        return self._get_session(user_id, session_id).search(query, top_k=top_k, threshold=threshold, similarity_fn=similarity_fn)
 
-    def set_task_context(
-        self,
-        key: str,
-        value: Any,
-        user_id: str = "default_user",
-        session_id: str = "default_session",
-    ) -> None:
-        session = self._get_session(user_id, session_id)
-        session.set_task_context(key, value)
+    def set_task_context(self, key: str, value: Any, user_id: str = "default_user", session_id: str = "default_session") -> None:
+        self._get_session(user_id, session_id).set_task_context(key, value)
 
-    def get_task_context(
-        self,
-        key: str | None = None,
-        user_id: str = "default_user",
-        session_id: str = "default_session",
-    ) -> Any:
-        session = self._get_session(user_id, session_id)
-        return session.get_task_context(key)
+    def get_task_context(self, key: str | None = None, user_id: str = "default_user", session_id: str = "default_session") -> Any:
+        return self._get_session(user_id, session_id).get_task_context(key)
 
-    def step_turn(
-        self,
-        user_id: str = "default_user",
-        session_id: str = "default_session",
-    ) -> int:
-        session = self._get_session(user_id, session_id)
-        return session.step_turn()
+    def step_turn(self, user_id: str = "default_user", session_id: str = "default_session") -> int:
+        return self._get_session(user_id, session_id).step_turn()
 
-    def clear_session(
-        self,
-        user_id: str = "default_user",
-        session_id: str = "default_session",
-    ) -> None:
-        key = (str(user_id).strip(), str(session_id).strip())
+    def clear_session(self, user_id: str = "default_user", session_id: str = "default_session") -> None:
+        key = (str(user_id), str(session_id))
         with self._lock:
-            if key in self._sessions:
-                self._sessions[key].clear()
-                del self._sessions[key]
-
-    def active_session_count(self) -> int:
-        with self._lock:
-            return len(self._sessions)
+            context = self._sessions.pop(key, None)
+        if context:
+            context.clear()

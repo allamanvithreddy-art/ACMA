@@ -1,27 +1,17 @@
 from __future__ import annotations
 
 from typing import Any
-from conflict.evidence_score import calculate_update_signal
 
 
 class DecisionResult(dict):
-    """
-    Dual string/dict representation for pipeline decisions.
-    Behaves as a dict for structured access (`res['action']`) and
-    compares equal to action strings (`res == 'Preserve'`).
-    """
-    def __init__(
-        self,
-        action: str,
-        reason: str,
-        requires_user_confirmation: bool = False,
-        details: dict[str, Any] | None = None,
-    ) -> None:
+    """Structured decision that remains backwards-compatible with string comparisons."""
+
+    def __init__(self, action: str, reason: str, requires_user_confirmation: bool = False, details: dict[str, Any] | None = None):
         super().__init__(
             action=action,
             reason=reason,
             requires_user_confirmation=requires_user_confirmation,
-            **(details or {})
+            **(details or {}),
         )
         self.action = action
         self.reason = reason
@@ -30,15 +20,21 @@ class DecisionResult(dict):
     def __eq__(self, other: Any) -> bool:
         if isinstance(other, str):
             return self.action.casefold() == other.casefold()
-        if isinstance(other, dict):
-            return self.get("action", "").casefold() == other.get("action", "").casefold()
         return super().__eq__(other)
 
     def __str__(self) -> str:
         return self.action
 
-    def __repr__(self) -> str:
-        return f"DecisionResult(action={self.action!r}, reason={self.reason!r})"
+
+def _nli(evidence: dict[str, Any]) -> tuple[str | None, float, float]:
+    result = evidence.get("nli")
+    if not result:
+        return None, 0.0, 0.0
+    return (
+        str(result.get("label", "")).casefold() or None,
+        float(result.get("confidence") or 0.0),
+        float(result.get("margin") or 0.0),
+    )
 
 
 def decide_action(
@@ -46,181 +42,92 @@ def decide_action(
     safety: Any = None,
     evidence: Any = None,
     relationship: str | None = None,
-    evidence_score: Any = None,
-    nli_label: str | None = None,
-    nli_confidence: float | None = None,
-    nli_margin: float | None = None,
-    update_signal: Any = None,
-    **kwargs: Any,
+    **_: Any,
 ) -> DecisionResult:
-    """
-    Decide the final memory action: Ignore, Preserve, Resolve, or Ask.
-    Supports both keyword dictionary input and direct parameter arguments.
-    """
-    # 1. Normalize parameters from either invocation format
-    safety_dict = safety.to_dict() if hasattr(safety, "to_dict") else (safety if isinstance(safety, dict) else {})
-    evidence_dict = evidence if isinstance(evidence, dict) else {}
+    safety_dict = safety.to_dict() if hasattr(safety, "to_dict") else dict(safety or {})
+    evidence_dict = dict(evidence or {})
 
-    rel = (
-        relationship
-        or evidence_dict.get("relationship")
-        or safety_dict.get("relationship")
-        or "unresolved"
-    )
-
-    nli = evidence_dict.get("nli")
-    if nli is not None and isinstance(nli, dict):
-        label = str(nli.get("label", "")).casefold()
-        conf = float(nli.get("confidence", 0.0))
-        margin = float(nli.get("margin", 0.0))
-    else:
-        label = str(nli_label or "").casefold() if nli_label else None
-        conf = float(nli_confidence or 0.0)
-        margin = float(nli_margin or 0.0)
-
+    rel = relationship or evidence_dict.get("relationship") or safety_dict.get("relationship") or "unresolved"
     update = evidence_dict.get("update") or {}
-    upd_score = calculate_update_signal(
-        update_signal if update_signal is not None else update
-    )
+    context = evidence_dict.get("context") or {}
+    nli_label, nli_confidence, nli_margin = _nli(evidence_dict)
 
-    explicitly_targeted = bool(
+    explicit_target = bool(
         update.get("targeted_to_old_memory")
         or update.get("explicit_supersession")
-        or kwargs.get("explicitly_targeted")
-    )
-    explicit_replacement = bool(
-        update.get("explicit_replacement")
-        or kwargs.get("explicit_replacement")
     )
 
-    # 2. Rule-based / Deterministic SAFE routes
-    if rel == "duplicate":
+    replacement_supported = bool(
+        update.get("replacement_supported")
+        or update.get("explicit_replacement")
+    )
+    new_is_event = bool(context.get("new_is_event"))
+    same_subject_attribute = bool(update.get("same_subject_and_attribute"))
+    different_value = bool(update.get("different_value"))
+
+    # A general memory and a later event that changes the value of the same
+    # attribute is an exception candidate, not an automatic Preserve. A human
+    # would normally want clarification before rewriting the standing memory.
+    if new_is_event and same_subject_attribute and different_value and not explicit_target:
         return DecisionResult(
-            action="Ignore",
-            reason="The candidate is a duplicate of an existing memory.",
-            requires_user_confirmation=False,
+            "Ask",
+            "The new event differs from an existing standing memory, but it does not explicitly say that the standing memory has changed.",
+            True,
         )
+
+    # 1. Deterministic safe outcomes.
+    if rel == "duplicate":
+        return DecisionResult("Ignore", "The incoming memory is already represented by the existing claim.")
 
     if rel == "independent":
-        return DecisionResult(
-            action="Preserve",
-            reason="The memories are independent (different subject, attribute, or scope).",
-            requires_user_confirmation=False,
-        )
+        return DecisionResult("Preserve", "The memory concerns a different subject or attribute and does not replace the existing memory.")
 
-    if rel == "specific_event":
-        return DecisionResult(
-            action="Preserve",
-            reason="The new memory is a specific event instance/exception, not a replacement.",
-            requires_user_confirmation=False,
-        )
+    if rel in {"compatible", "paraphrase"} and nli_label != "contradiction":
+        return DecisionResult("Preserve", "The memories are compatible and can coexist.")
 
-    if rel in ("compatible", "paraphrase"):
-        return DecisionResult(
-            action="Preserve",
-            reason="The new memory is compatible with existing memory.",
-            requires_user_confirmation=False,
-        )
-
-    # 3. If NLI was not run and Safety gate was SAFE
-    if label is None:
-        if safety_dict.get("safe") is True:
-            hint = safety_dict.get("action_hint") or "Preserve"
+    # 2. Explicit targeted replacement can resolve a contradiction.
+    if explicit_target and replacement_supported:
+        if nli_label in {None, "contradiction", "neutral", "entailment"}:
             return DecisionResult(
-                action=hint,
-                reason=safety_dict.get("reason", "Rule safety gate approved."),
-                requires_user_confirmation=False,
-            )
-        # Not safe and no NLI -> Ask
-        return DecisionResult(
-            action="Ask",
-            reason="Insufficient evidence for a safe deterministic decision.",
-            requires_user_confirmation=True,
-        )
-
-    # 4. Semantic Decision with NLI
-    # Case A: Entailment
-    if label == "entailment":
-        if conf >= 0.90 and margin >= 0.70 and upd_score < 0.50:
-            # High entailment without update signals indicates semantic duplicate
-            return DecisionResult(
-                action="Ignore",
-                reason="NLI reports high-confidence entailment; candidate is already represented.",
-                requires_user_confirmation=False,
-            )
-        return DecisionResult(
-            action="Preserve",
-            reason="NLI reports entailment; the existing memory is confirmed/preserved.",
-            requires_user_confirmation=False,
-        )
-
-    # Case B: Contradiction
-    if label == "contradiction":
-        # Check for update evidence (linguistic markers, explicit replacement, or temporal progression)
-        has_update_evidence = (
-            explicitly_targeted
-            or explicit_replacement
-            or upd_score >= 0.65
-            or rel == "update"
-        )
-
-        if has_update_evidence:
-            return DecisionResult(
-                action="Resolve",
-                reason=(
-                    "NLI reports contradiction and update evidence supports "
-                    "superseding the existing memory."
-                ),
-                requires_user_confirmation=False,
+                "Resolve",
+                "The incoming memory explicitly identifies the old memory as the claim being replaced.",
             )
 
-        if rel == "constraint_violation":
+    # 3. Semantic evidence.
+    if nli_label == "contradiction":
+        # Human-like conservative rule: a contradiction without an explicit
+        # replacement is ambiguous, including event exceptions.
+        if new_is_event and same_subject_attribute:
             return DecisionResult(
-                action="Ask",
-                reason=(
-                    "Evidence indicates a potential constraint violation without "
-                    "established update authorization; user confirmation required."
-                ),
-                requires_user_confirmation=True,
+                "Ask",
+                "The new event conflicts with an existing memory, but it does not explicitly say that the existing preference or fact has changed.",
+                True,
             )
-
-        # Unexplained contradiction -> genuine conflict requiring user clarification
-        return DecisionResult(
-            action="Ask",
-            reason=(
-                "NLI reports contradiction between memories without explicit "
-                "update or supersession evidence."
-            ),
-            requires_user_confirmation=True,
-        )
-
-    # Case C: Neutral
-    if label == "neutral":
-        # If the claims are about different topics/attributes or non-conflicting details
-        if rel in ("independent", "specific_event", "unresolved") and upd_score < 0.70:
-            # Compatible / non-contradictory claims should be retained
+        if nli_confidence >= 0.75 and nli_margin >= 0.20 and not explicit_target:
             return DecisionResult(
-                action="Preserve",
-                reason="NLI reports neutral; statements are mutually compatible.",
-                requires_user_confirmation=False,
+                "Ask",
+                "The memories contradict each other, but there is no sufficiently strong replacement signal.",
+                True,
             )
+        return DecisionResult("Ask", "The evidence is contradictory and the intended memory change is unclear.", True)
 
-        if upd_score >= 0.80 and explicitly_targeted:
-            return DecisionResult(
-                action="Resolve",
-                reason="Strong targeted update signal supports resolving the memory.",
-                requires_user_confirmation=False,
-            )
+    if nli_label == "entailment":
+        if nli_confidence >= 0.90 and nli_margin >= 0.20:
+            return DecisionResult("Ignore", "The new statement is strongly entailed by an existing memory, so storing another copy is unnecessary.")
+        return DecisionResult("Preserve", "The statements are semantically compatible.")
 
-        return DecisionResult(
-            action="Ask",
-            reason="NLI evidence is neutral and ambiguity cannot be resolved automatically.",
-            requires_user_confirmation=True,
-        )
+    if nli_label == "neutral":
+        if rel == "independent":
+            return DecisionResult("Preserve", "The statements are neutral and structurally independent.")
+        if explicit_target and replacement_supported:
+            return DecisionResult("Resolve", "Structured update metadata explicitly supports replacing the old memory.")
+        return DecisionResult("Ask", "The statements are neither clearly equivalent nor clearly a supported replacement.", True)
 
-    # Fallback
-    return DecisionResult(
-        action="Ask",
-        reason="Evidence is inconclusive; user confirmation is required.",
-        requires_user_confirmation=True,
-    )
+    # 4. SAFE rule route from the Safety Gate.
+    if safety_dict.get("safe") is True:
+        hint = safety_dict.get("action_hint")
+        if hint in {"Ignore", "Preserve", "Resolve"}:
+            return DecisionResult(hint, safety_dict.get("reason", "Deterministic safety rule approved the action."))
+
+    # 5. Conservative default.
+    return DecisionResult("Ask", "The available evidence is insufficient for a safe automatic memory change.", True)
