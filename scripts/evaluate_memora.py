@@ -15,7 +15,8 @@ import sys
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from memory.schema import Memory
+from memory.schema import Memory, MemoryQuery
+from memory.store import MemoryStore
 from conflict.nli_engine import NLIEngine
 from conflict.pipeline import ACPipeline
 
@@ -277,6 +278,14 @@ def build_list_update_case(session: dict[str, Any]) -> Case | None:
         f"content:{field}",
         f"<existing-content> + {added_text}",
         conversation or f"New items were added to {field}.",
+        {
+            "additive_update": True,
+            "update_type": "redesigned_list_update",
+            "operation": "add",
+            "memory_updates": memory_updates,
+            "extraction_source": "memora_operation_details",
+            "extraction_confidence": 1.0,
+        },
     )
 
     return Case(
@@ -399,6 +408,13 @@ def main() -> None:
         nli_engine=NLIEngine.get_default()
     )
 
+    # Real retrieval benchmark store.
+    # Each case uses its own user namespace so the previous memory for that
+    # case is retrieved by the actual MemoryStore embedding pipeline.
+    runtime_store = MemoryStore(
+        OUTPUT_DIR / "memora_runtime_eval.db"
+    )
+
     rows: list[dict[str, Any]] = []
 
     route_counts = Counter()
@@ -415,11 +431,35 @@ def main() -> None:
 
     for index, case in enumerate(cases, start=1):
         try:
-            result = pipeline.evaluate_candidate(
-                case.old_memory,
-                case.new_memory,
-                retrieval_score=0.90,
+            case_user_id = f"memora:{case.persona}:{case.session_id}"
+
+            case.old_memory.user_id = case_user_id
+            case.new_memory.user_id = case_user_id
+
+            runtime_store.save_memory(case.old_memory)
+
+            query = MemoryQuery.from_memory(case.new_memory)
+
+            retrieved = runtime_store.retrieve_related_memories(
+                query,
+                top_k=5,
+                similarity_threshold=0.0,
+                user_id=case_user_id,
             )
+
+            if retrieved:
+                candidate, retrieval_score = retrieved[0]
+                result = pipeline.evaluate_candidate(
+                    candidate,
+                    case.new_memory,
+                    retrieval_score=retrieval_score,
+                )
+            else:
+                result = pipeline.evaluate_candidate(
+                    case.old_memory,
+                    case.new_memory,
+                    retrieval_score=0.0,
+                )
 
             predicted_action = str(result["action"])
 

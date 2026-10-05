@@ -65,6 +65,25 @@ def decide_action(
     same_subject_attribute = bool(update.get("same_subject_and_attribute"))
     different_value = bool(update.get("different_value"))
 
+    # Additive memory evolution is NOT a replacement conflict.
+    # Example:
+    #   existing agenda -> existing agenda + new agenda item
+    #
+    # Preserve is the correct four-action decision; the memory-evolution
+    # layer may subsequently merge/append the information.
+    additive_update = bool(
+        update.get("additive_update")
+        or update.get("update_type") == "redesigned_list_update"
+        or update.get("memory_updates")
+    )
+
+    if additive_update:
+        return DecisionResult(
+            "Preserve",
+            "The incoming memory adds information without replacing the existing memory.",
+            False,
+        )
+
     # A general memory and a later event that changes the value of the same
     # attribute is an exception candidate, not an automatic Preserve. A human
     # would normally want clarification before rewriting the standing memory.
