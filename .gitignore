@@ -1,3 +1,12 @@
+# External benchmark datasets
+data/external/
+
+# Generated evaluation outputs
+outputs/realistic_500_plus/
+
+# Local architecture patch package
+ACMA_architecture_fix_v1.zip
+acma_architecture_fix_v1/
 # Virtual environment
 venv/
 .venv/

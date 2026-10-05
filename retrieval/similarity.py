@@ -1,42 +1,35 @@
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
+from __future__ import annotations
+
+from memory.schema import Memory
+from memory.store import MemoryStore
 
 
-# Load once
-model = SentenceTransformer(
-    "all-MiniLM-L6-v2"
-)
+def calculate_similarity(
+    old_memory: Memory,
+    new_memory: Memory,
+) -> float:
+    """
+    Calculate semantic similarity using ACMA's shared embedding model.
 
+    The model lifecycle is owned by MemoryStore so the application does not
+    create independent SentenceTransformer instances in multiple modules.
+    """
 
-def calculate_similarity(old_memory, new_memory):
+    store = MemoryStore()
 
-    old_text = (
-        f"{old_memory.subject} "
-        f"{old_memory.attribute} "
-        f"{old_memory.value} "
-        f"{old_memory.context}"
-    )
+    old_text = store.memory_to_text(old_memory)
+    new_text = store.memory_to_text(new_memory)
 
-    new_text = (
-        f"{new_memory.subject} "
-        f"{new_memory.attribute} "
-        f"{new_memory.value} "
-        f"{new_memory.context}"
-    )
+    if not old_text.strip() or not new_text.strip():
+        return 0.0
 
+    model = store._load_embedding_model()
 
     embeddings = model.encode(
-        [
-            old_text,
-            new_text
-        ]
+        [old_text, new_text],
+        convert_to_numpy=True,
+        normalize_embeddings=True,
+        show_progress_bar=False,
     )
 
-
-    score = cosine_similarity(
-        [embeddings[0]],
-        [embeddings[1]]
-    )[0][0]
-
-
-    return float(score)
+    return float(embeddings[0] @ embeddings[1])

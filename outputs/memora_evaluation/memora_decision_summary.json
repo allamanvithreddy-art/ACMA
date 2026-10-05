@@ -1,0 +1,112 @@
+{
+  "dataset": {
+    "name": "Memora quarterly",
+    "total_sessions_seen": 19913,
+    "operation_counts": {
+      "add": 7434,
+      "None": 8199,
+      "update": 2102,
+      "delete": 2178
+    },
+    "decision_cases": 1655,
+    "add_sessions": 7434,
+    "delete_sessions": 2178,
+    "unsupported_updates_skipped": 447,
+    "ground_truth_policy": {
+      "value_update": "Resolve",
+      "preference_update": "Resolve",
+      "redesigned_list_update": "Preserve",
+      "delete": "separate lifecycle metric"
+    }
+  },
+  "overall": {
+    "correct": 1655,
+    "errors": 0,
+    "accuracy_percent": 100.0
+  },
+  "safety_gate": {
+    "safe_direct_cases": 1368,
+    "safe_direct_correct": 1368,
+    "safe_direct_accuracy_percent": 100.0,
+    "coverage_percent": 82.66
+  },
+  "nli_decision_path": {
+    "nli_routed_cases": 287,
+    "nli_route_correct": 287,
+    "nli_route_final_accuracy_percent": 100.0,
+    "nli_calls": 287,
+    "labels": {
+      "neutral": 232,
+      "contradiction": 55
+    }
+  },
+  "decision_policy": {
+    "expected": {
+      "Preserve": 385,
+      "Resolve": 1270
+    },
+    "predicted": {
+      "Preserve": 385,
+      "Resolve": 1270
+    },
+    "per_action": {
+      "Ignore": {
+        "support": 0,
+        "precision_percent": 0,
+        "recall_percent": 0,
+        "f1_percent": 0
+      },
+      "Preserve": {
+        "support": 385,
+        "precision_percent": 100.0,
+        "recall_percent": 100.0,
+        "f1_percent": 100.0
+      },
+      "Resolve": {
+        "support": 1270,
+        "precision_percent": 100.0,
+        "recall_percent": 100.0,
+        "f1_percent": 100.0
+      },
+      "Ask": {
+        "support": 0,
+        "precision_percent": 0,
+        "recall_percent": 0,
+        "f1_percent": 0
+      }
+    },
+    "confusion_matrix": {
+      "Ignore": {},
+      "Preserve": {
+        "Preserve": 385
+      },
+      "Resolve": {
+        "Resolve": 1270
+      },
+      "Ask": {}
+    },
+    "by_update_type": {
+      "preference_update": {
+        "cases": 517,
+        "correct": 517,
+        "accuracy_percent": 100.0
+      },
+      "redesigned_list_update": {
+        "cases": 385,
+        "correct": 385,
+        "accuracy_percent": 100.0
+      },
+      "value_update": {
+        "cases": 753,
+        "correct": 753,
+        "accuracy_percent": 100.0
+      }
+    }
+  },
+  "latency_ms": {
+    "mean_ms": 106.57,
+    "median_ms": 3.67,
+    "p95_ms": 676.54,
+    "max_ms": 1299.67
+  }
+}
